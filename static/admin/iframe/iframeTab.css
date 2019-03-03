@@ -1,0 +1,143 @@
+﻿/*选项卡*/
+.mtab {
+position: relative;
+margin-top: 0px;
+border-bottom: 1px solid #d2d6de;
+}
+
+.mtab .fa-backward,.mtab .fa-forward{
+    font-size: 10px;
+}
+.mtab .fa-caret-down {
+	font-size: 14px;
+	color:#2F4050;
+}
+
+.mtab .tab-left {
+    color: #2F4050;
+}
+.mtab .tab-right {
+    right:38px;
+    color: #2F4050;
+    position: absolute;
+}
+
+.mtab .tab-dropdown {
+    right:0px;
+    position: absolute;
+    font-size: 18px !important;
+    color: #2F4050 !important;
+    width: 38px;
+}
+
+.mtab .mtab-btn {
+width: 38px;
+height: 38px;
+line-height: 38px;
+text-align: center;
+display: inline-block;
+outline: none;
+background-color: #FFFFFF;
+}
+
+.mtab .mtab-btn:hover {
+background-color: #F1F4F5;
+}
+
+.mtab .mtab-body, .mtab .mtab-main {
+position: absolute;
+top: 0;
+left: 38px;
+right: 76px;
+height: 38px;
+overflow: hidden;
+white-space: nowrap;
+background-color: #FFFFFF;
+}
+
+.mtab .mtab-main {
+left: 0;
+right: 0;
+-webkit-transition: left .5s;
+-moz-transition: left .5s;
+-o-transition: left .5s;
+transition: left .5s;
+}
+
+.mtab .mtab-main a {
+color: #2F4050;
+margin: 0 0 0 0;
+white-space: nowrap;
+display: inline-block;
+text-decoration: none;
+outline: none !important;
+padding: 10px 12px 10px !important;
+border-radius: 0px 0px 0 0 !important;
+font-size: 12px;
+background-color: #ffffff;/* 438eb9 */
+height:38px;
+}
+
+.mtab .mtab-main a.active {
+
+background-color: #F1F4F5;/* 438eb9 */
+}
+
+.mtab .mtab-main a:hover {
+
+background-color: #F1F4F5;
+}
+
+
+.mtab .mtab-main a em:hover {
+color: #DD4B39;
+}
+
+.mtab .mtab-main .fa-close {
+font-size: 12px;
+margin-left: 5px;
+}
+
+/* 选项卡·内容 */
+.tab-content {
+padding: 0;
+/* border: 1px solid transparent;*/
+
+}
+
+
+.tab-content .tab-pane {
+position: relative;
+width: 100%;
+}
+
+.tab-content iframe {
+position: absolute;
+height: 100%;
+border: none;
+width: 100%;
+}
+
+
+/*下拉菜单*/
+.dropdown-yellow > li > a {
+cursor: pointer;
+padding: 5px 15px;
+}
+
+.dropdown-yellow > li > a:hover, .dropdown-yellow > li > a:focus, .dropdown-yellow > li > a:active, .dropdown-yellow > li.active > a, .dropdown-yellow > li.active > a:hover, .dropdown-yellow .dropdown-submenu:hover > a {
+color: #444;
+background: #E5E5E5;
+}
+
+@media (max-width: 768px) {
+    .mtab {
+        display: none;
+    }
+   /* #content-main {
+        height: calc(100% - 100px);
+    }
+    .fixed-nav #content-main {
+        height: calc(100% - 38px);
+    }*/
+}

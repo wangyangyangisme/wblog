@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Bootstrap Tables | Nifty - Admin Template</title>
+
+
+    <!--STYLESHEET-->
+    <!--=================================================-->
+
+    <!--Open Sans Font [ OPTIONAL ]-->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+
+
+    <!--Bootstrap Stylesheet [ REQUIRED ]-->
+    <link href="/static/admin/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!--Nifty Stylesheet [ REQUIRED ]-->
+    <link href="/static/admin/css/nifty.min.css" rel="stylesheet">
+
+
+    <!--Nifty Premium Icon [ DEMONSTRATION ]-->
+    <link href="/static/admin/css/demo/nifty-demo-icons.min.css" rel="stylesheet">
+
+
+    <!--=================================================-->
+
+
+
+    <!--Pace - Page Load Progress Par [OPTIONAL]-->
+    <link href="/static/admin/plugins/pace/pace.min.css" rel="stylesheet">
+    <script src="/static/admin/plugins/pace/pace.min.js"></script>
+
+        
+    <!--Bootstrap Table [ OPTIONAL ]-->
+    <link href="/static/admin/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+
+
+    <!--Font Awesome [ OPTIONAL ]-->
+    <link href="/static/admin/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+
+    <!--X-editable [ OPTIONAL ]-->
+    <link href="/static/admin/plugins/x-editable/css/bootstrap-editable.css" rel="stylesheet">
+
+    
+    <!--=================================================
+
+    REQUIRED
+    You must include this in your project.
+
+
+    RECOMMENDED
+    This category must be included but you may modify which plugins or components which should be included in your project.
+
+
+    OPTIONAL
+    Optional plugins. You may choose whether to include it in your project or not.
+
+
+    DEMONSTRATION
+    This is to be removed, used for demonstration purposes only. This category must not be included in your project.
+
+
+    SAMPLE
+    Some script samples which explain how to initialize plugins or components. This category should not be included in your project.
+
+
+    Detailed information and more samples can be found in the document.
+
+    =================================================-->
+        
+</head>
+
+<!--TIPS-->
+<!--You may remove all ID or Class names which contain "demo-", they are only used for demonstration. -->
+<body>
+    <div id="container" class="effect">
+
+
+        <div class="boxed">
+
+            <!--CONTENT CONTAINER-->
+            <!--===================================================-->
+            <div id="container" class="bg-light">
+
+                <!--Page content-->
+                <!--===================================================-->
+                <div id="page-content">
+
+                    <!-- 工具容器 -->
+                    <div id="toolbar" class="btn-group">
+                        <button id="btn_add" type="button" class="btn btn-default" onclick="">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                        </button>
+                        <button id="btn_edit" type="button" class="btn btn-default" onclick="">
+                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>选择修改
+                        </button>
+                        <button id="btn_delete" type="button" class="btn btn-default" onclick="">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>选择删除
+                        </button>
+                    </div>
+
+
+                    <table id="articletable"></table>
+
+                </div>
+                <!--===================================================-->
+                <!--End page content-->
+
+            </div>
+            <!--===================================================-->
+            <!--END CONTENT CONTAINER-->
+
+        </div>
+
+
+
+
+        <!-- SCROLL PAGE BUTTON -->
+        <!--===================================================-->
+        <button class="scroll-top btn">
+            <i class="pci-chevron chevron-up"></i>
+        </button>
+        <!--===================================================-->
+    </div>
+    <!--===================================================-->
+    <!-- END OF CONTAINER -->
+
+
+    
+    
+    
+    <!--JAVASCRIPT-->
+    <!--=================================================-->
+
+    <!--jQuery [ REQUIRED ]-->
+    <script src="/static/admin/js/jquery.min.js"></script>
+
+    <!--BootstrapJS [ RECOMMENDED ]-->
+    <script src="/static/admin/js/bootstrap.min.js"></script>
+
+    <!--NiftyJS [ RECOMMENDED ]-->
+    <script src="/static/admin/js/nifty.min.js"></script>
+
+    <!--=================================================-->
+
+    <!--Bootstrap Table Sample [ SAMPLE ]-->
+    <script src="/static/admin/js/demo/tables-bs-table.js"></script>
+
+
+    <!--X-editable [ OPTIONAL ]-->
+    <script src="/static/admin/plugins/x-editable/js/bootstrap-editable.min.js"></script>
+
+    <!--Bootstrap Table [ OPTIONAL ]-->
+    <script src="/static/admin/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+
+    <script src="/static/admin/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <!--Bootstrap Table Extension [ OPTIONAL ]-->
+    <script src="/static/admin/plugins/bootstrap-table/extensions/editable/bootstrap-table-editable.js"></script>
+
+    <script>
+
+        function tableHeight() {
+            return $('#container').height();
+            //return 400;
+        }
+
+        function autoTableHeight(){
+            setTimeout(function () {
+                $('#articletable').bootstrapTable('resetView', {
+                    height: tableHeight()
+                });
+            },50);
+        }
+
+        $(window).resize(autoTableHeight);
+
+
+        $(document).ready(function () {
+
+
+            var $table = $('#articletable').bootstrapTable({
+                url: "/urllist",                           //请求后台的URL（*）
+                method: 'GET',                      //请求方式（*）
+                toolbar: '#toolbar',              //工具按钮用哪个容器
+                striped: true,                      //是否显示行间隔色
+                cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+                pagination: true,                   //是否显示分页（*）
+                sortable: true,                     //是否启用排序
+                sortOrder: "asc",                   //排序方式
+                sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
+                pageNumber: 1,                      //初始化加载第一页，默认第一页,并记录
+                pageSize: 10,                     //每页的记录行数（*）
+                pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
+                search: false,                      //是否显示表格搜索
+                strictSearch: true,
+                showColumns: true,                  //是否显示所有的列（选择显示的列）
+                showRefresh: true,                  //是否显示刷新按钮
+                minimumCountColumns: 2,             //最少允许的列数
+                clickToSelect: true,                //是否启用点击选中行
+                //height: tableHeight(),                  //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+                uniqueId: "id",                     //每一行的唯一标识，一般为主键列
+                showToggle: false,                   //是否显示详细视图和列表视图的切换按钮
+                cardView: false,                    //是否显示详细视图
+                detailView: false,                  //是否显示父子表
+                //得到查询的参数
+                queryParams: function (params) {
+                    //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
+                    var temp = {
+                        rows: params.limit,                         //页面大小
+                        page: (params.offset / params.limit) + 1,   //页码
+                        sort: params.sort,      //排序列名
+                        sortOrder: params.order //排位命令（desc，asc）
+                    };
+                    return temp;
+                },
+                //rowStyle: function (row, index) {
+                // },
+
+                columns: [{
+                    checkbox: true,
+                    visible: true                  //是否显示复选框
+                }, {
+                    field: 'title',
+                    title: '标题',
+                }, {
+                    field: 'url',
+                    title: '链接',
+                }, {
+                    field: 'cover',
+                    title: '封面',
+                }, {
+                    field: 'data_id',
+                    title: '数据',
+                }, {
+                    field: 'from',
+                    title: '来源',
+                }, {
+                    field: 'created_at',
+                    title: '创建时间',
+                }, {
+                    field: 'id',
+                    title: '操作',
+                },],
+                onLoadSuccess: function () {
+                },
+                onLoadError: function () {
+
+                },
+                onDblClickRow: function (row, $element) {
+
+                },
+
+            });
+        });
+
+    </script>
+
+    
+
+</body>
+</html>
+

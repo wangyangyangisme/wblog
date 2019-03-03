@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>General Elements | Nifty - Admin Template</title>
+
+
+    <!--STYLESHEET-->
+    <!--=================================================-->
+
+    <!--Open Sans Font [ OPTIONAL ]-->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+    <!--Select2 [ OPTIONAL ]-->
+    <link href="/static/admin/plugins/select2/css/select2.min.css" rel="stylesheet">
+
+
+    <!--Bootstrap Stylesheet [ REQUIRED ]-->
+    <link href="/static/admin/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!--Nifty Stylesheet [ REQUIRED ]-->
+    <link href="/static/admin/css/nifty.min.css" rel="stylesheet">
+
+
+    <!--Nifty Premium Icon [ DEMONSTRATION ]-->
+    <link href="/static/admin/css/demo/nifty-demo-icons.min.css" rel="stylesheet">
+
+    <link href="/static/admin/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.css" rel="stylesheet">
+
+    <!--=================================================-->
+
+
+    <!--Pace - Page Load Progress Par [OPTIONAL]-->
+    <link href="/static/admin/plugins/pace/pace.min.css" rel="stylesheet">
+    <script src="/static/admin/plugins/pace/pace.min.js"></script>
+
+
+    <!--Demo [ DEMONSTRATION ]-->
+    <link href="/static/admin/css/demo/nifty-demo.min.css" rel="stylesheet">
+
+    <link href="/static/editor.md/css/editormd.css"  rel="stylesheet"/>
+
+    <!--=================================================
+
+    REQUIRED
+    You must include this in your project.
+
+
+    RECOMMENDED
+    This category must be included but you may modify which plugins or components which should be included in your project.
+
+
+    OPTIONAL
+    Optional plugins. You may choose whether to include it in your project or not.
+
+
+    DEMONSTRATION
+    This is to be removed, used for demonstration purposes only. This category must not be included in your project.
+
+
+    SAMPLE
+    Some script samples which explain how to initialize plugins or components. This category should not be included in your project.
+
+
+    Detailed information and more samples can be found in the document.
+
+    =================================================-->
+
+</head>
+
+<!--TIPS-->
+<!--You may remove all ID or Class names which contain "demo-", they are only used for demonstration. -->
+<body>
+
+<style>
+    .select2 {
+        width: 100% !important;
+    }
+
+    .editormd .editormd-preformatted-text-dialog,
+    .editormd .editormd-code-block-dialog,
+    .editormd .editormd-help-dialog {
+        top: 8px !important;
+        height: 455px !important;
+    }
+    .editormd .editormd-preformatted-text-dialog  .CodeMirror {
+        height: 320px !important;
+    }
+    .editormd .editormd-code-block-dialog .CodeMirror {
+        height: 277px !important;
+    }
+    .editormd .editormd-help-dialog .markdown-body {
+        height: 320px !important;
+    }
+
+</style>
+
+<div id="container" class="effect">
+
+    <div class="boxed">
+
+        <!--CONTENT CONTAINER-->
+        <!--===================================================-->
+        <div id="container" class="bg-light">
+
+            <!--Page content-->
+            <!--===================================================-->
+            <div id="page-content">
+
+                <div>
+                    <form role="form">
+                        <div class="form-group">
+
+                            <input type="text" name="title" placeholder="输入标题..." class="form-control">
+                        </div>
+
+                        <div class="form-group">
+
+                            <select id="category" name="category" class="form-control">
+
+                                <option value="CA">California</option>
+                                <option value="NV">Nevada</option>
+                                <option value="OR">Oregon</option>
+                                <option value="WA">Washington</option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+                            <input type="text" id="tags" name="tags"  class="form-control" placeholder="最多输入5个标签..." value="">
+                        </div>
+
+                        <div class="form-group">
+                            <div id="editormd">
+                                <!-- 不添加textarea也行，在这添加可以达到刷新数据不丢失 注意：name属性的值 -->
+                                <textarea id="editormd-markdown-doc" name="editormd-markdown-doc" style="display:none;"></textarea>
+                            </div>
+                        </div>
+
+
+
+                        <div class="text-right form-group">
+                            <button class="btn btn-block btn-success" type="button">发 布</button>
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+            <!--===================================================-->
+            <!--End page content-->
+
+        </div>
+        <!--===================================================-->
+        <!--END CONTENT CONTAINER-->
+
+
+    </div>
+
+
+    <!-- SCROLL PAGE BUTTON -->
+    <!--===================================================-->
+    <button class="scroll-top btn">
+        <i class="pci-chevron chevron-up"></i>
+    </button>
+    <!--===================================================-->
+</div>
+<!--===================================================-->
+<!-- END OF CONTAINER -->
+
+
+<!--JAVASCRIPT-->
+<!--=================================================-->
+
+<!--jQuery [ REQUIRED ]-->
+<script src="/static/admin/js/jquery.min.js"></script>
+
+
+<!--BootstrapJS [ RECOMMENDED ]-->
+<script src="/static/admin/js/bootstrap.min.js"></script>
+
+
+<!--NiftyJS [ RECOMMENDED ]-->
+<script src="/static/admin/js/nifty.min.js"></script>
+
+<!--Bootstrap Tags Input [ OPTIONAL ]-->
+<script src="/static/admin/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
+
+<!--=================================================-->
+<!--Select2 [ OPTIONAL ]-->
+<script src="/static/admin/plugins/select2/js/select2.min.js"></script>
+
+<!--Demo script [ DEMONSTRATION ]-->
+<script src="/static/admin/js/demo/nifty-demo.min.js"></script>
+<!-- Editor.md-->
+<script src="/static/editor.md/editormd.min.js"></script>
+
+<script>
+    var editor;
+
+    $(document).ready(function () {
+        $("#category").select2({
+            placeholder: "选择文章分类...",
+            allowClear: true
+        });
+
+        $('#tags').tagsinput({
+            tagClass: 'label label-primary',
+            maxTags: 5
+        });
+
+        editor = editormd("editormd", {
+            width: "100%",
+            height: 740,
+            path : '/static/editor.md/lib/',
+            //theme : "dark",
+            //previewTheme : "dark",
+            //editorTheme : "pastel-on-dark",
+            //markdown : md,
+            codeFold : true,
+            syncScrolling : 'single',
+            saveHTMLToTextarea : true,    // 保存 HTML 到 Textarea
+            searchReplace : true,
+            //watch : false,                // 关闭实时预览
+            placeholder:"欢迎使用wblog...",
+            htmlDecode : "style,script,iframe|on*",            // 开启 HTML 标签解析，为了安全性，默认不开启
+            //toolbar  : false,             //关闭工具栏
+            //previewCodeHighlight : false, // 关闭预览 HTML 的代码块高亮，默认开启
+            emoji : true,
+            taskList : true,
+            tocm            : true,         // Using [TOCM]
+            tex : true,                   // 开启科学公式TeX语言支持，默认关闭
+            flowChart : true,             // 开启流程图支持，默认关闭
+            sequenceDiagram : true,       // 开启时序/序列图支持，默认关闭,
+            //dialogLockScreen : false,   // 设置弹出层对话框不锁屏，全局通用，默认为true
+            //dialogShowMask : false,     // 设置弹出层对话框显示透明遮罩层，全局通用，默认为true
+            //dialogDraggable : false,    // 设置弹出层对话框不可拖动，全局通用，默认为true
+            //dialogMaskOpacity : 0.4,    // 设置透明遮罩层的透明度，全局通用，默认值为0.1
+            //dialogMaskBgColor : "#000", // 设置透明遮罩层的背景颜色，全局通用，默认为#fff
+            imageUpload : true,
+            imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+            imageUploadURL : "./php/upload.php",
+
+
+            toolbarIcons : function() {
+                // Or return editormd.toolbarModes[name]; // full, simple, mini
+                // Using "||" set icons align right.
+                return [
+                    "undo", "redo", "|",
+                    "bold", "del", "italic", "quote", "ucwords", "uppercase", "lowercase", "|",
+                    "h1", "h2", "h3", "h4", "h5", "h6", "|",
+                    "list-ul", "list-ol", "hr", "|",
+                    "link", "reference-link", "image", "code", "preformatted-text", "code-block", "table", "datetime", "emoji", "html-entities", "pagebreak", "|",
+                    "goto-line", "watch", "preview", "fullscreen", "clear", "search", "|",
+                    "help", "info"
+                ]
+            },
+
+            onload : function() {
+                console.log('onload', this);
+                //this.fullscreen();
+                //this.unwatch();
+                //this.watch().fullscreen();
+
+                //this.setMarkdown("#PHP");
+                //this.width("100%");
+                //this.height(480);
+                //this.resize("100%", 640);
+            }
+        });
+
+
+
+    });
+
+</script>
+
+</body>
+</html>
